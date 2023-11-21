@@ -13,6 +13,6 @@ class TimetableSeeder extends Seeder
      */
     public function run(): void
     {
-        Timetable::factory()->count(20)->create();
+        Timetable::factory()->count(40)->create();
     }
 }
