@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Resources\Classroom;
+namespace App\Http\Resources\Timetable;
 
 use App\Http\Resources\Curriculum\CurriculumResource;
-use App\Http\Resources\Lecture\LectureCollection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ClassroomResource extends JsonResource
+class TimetableResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,8 +17,7 @@ class ClassroomResource extends JsonResource
     {
         return [
             'id'         => $this->id,
-            'title'      => $this->title,
-            'lectures'   => new LectureCollection($this->lectures),
+            'curriculum' => new CurriculumResource($this->curriculum),   
         ];
     }
 }
