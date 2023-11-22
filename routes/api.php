@@ -47,6 +47,8 @@ Route::prefix('v1')->group(function () {
         Route::get('/{classroom}', CurriculumGetForClassController::class)->name('curriculum.forclass');
     });
     Route::prefix('timetable')->group(function () {
-        Route::post('/{timetable}', TimeTableUpdateOrCreateController::class)->name('timetable.updateorcreate');
+        Route::middleware(['timetable'])->group(function (){
+            Route::post('/{classroom}', TimeTableUpdateOrCreateController::class)->name('timetable.updateorcreate');
+        });
     });
 });

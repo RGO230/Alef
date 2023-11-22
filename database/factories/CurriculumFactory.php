@@ -18,7 +18,7 @@ class CurriculumFactory extends Factory
     public function definition(): array
     {
         return [
-            'classroom_id' => Classroom::factory(),
+            'classroom_id' => $this->faker->unique()->numberBetween(1,Classroom::count()),
         ];
     }
 }

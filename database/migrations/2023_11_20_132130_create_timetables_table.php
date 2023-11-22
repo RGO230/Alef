@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('timetables', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('lecture_queue')->unique(); 
+            $table->unsignedBigInteger('lecture_queue'); 
             $table->unsignedBigInteger('curriculum_id'); 
             $table->unsignedBigInteger('lecture_id'); 
             $table->index('curriculum_id');

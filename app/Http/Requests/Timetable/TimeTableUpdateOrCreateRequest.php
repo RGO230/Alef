@@ -22,7 +22,6 @@ class TimeTableUpdateOrCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'curriculum_id' => ['integer', 'required', 'exists:curricula,id'],
             'lecture_id'    => ['integer', 'required', 'exists:lectures,id'],
             'lecture_queue' => ['integer','required'],
         ];

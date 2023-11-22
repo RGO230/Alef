@@ -10,7 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Curriculum extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'classroom_id',
+    ];
     public function lectures ():HasMany
     {
         return $this->hasMany(Lecture::class);

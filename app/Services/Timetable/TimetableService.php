@@ -14,15 +14,17 @@ use App\Models\Timetable;
 use Illuminate\Database\Eloquent\Collection;
 class TimetableService
 {
-    private function getByClassroom(Classroom $classroom):Timetable
+    private function getByClassroom(Classroom $classroom): Timetable
     {
         return Timetable::WhereHas('curriculum.classroom', function ($query) use ($classroom) {
             $query->where('classroom_id', $classroom->id);
         })->first();
     }
-    public function updateOrCreate(Classroom $classroom, TimeTableUpdateOrCreateRequest $request): Timetable
+    public function updateOrCreate(Classroom $classroom, array $data): Timetable
     {
         $timetable = $this->getByClassroom($classroom);
-        return $timetable->updateOrCreate(['curriculum_id' => $timetable->curriculum_id, 'lecture_id' => $timetable->lecture_id, 'lecture_queue' => $timetable->lecture_queue], ['lecture_id' => $request->lecture_id, 'lecture_queue' => $request->lecture_queue]);
+        $curriculum = Curriculum::updateOrCreate(['classroom_id'=>$classroom->id],['classroom_id'=>$classroom->id]);
+        $timetable->updateOrCreate(['curriculum_id' => $curriculum->id, 'lecture_id' => $timetable->lecture_id, 'lecture_queue' => $timetable->lecture_queue], $data);
+        return $timetable->with('curriculum')->where('id',$timetable->id)->first();
     }
 }

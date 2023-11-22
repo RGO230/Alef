@@ -21,7 +21,7 @@ class TimetableFactory extends Factory
         return [
             'curriculum_id' => Curriculum::inRandomOrder()->first()->id,
             'lecture_id'    => Lecture::inRandomOrder()->first()->id,
-            'lecture_queue' => $this->faker->unique()->numberBetween(1,40)
+            'lecture_queue' => $this->faker->unique()->numberBetween(1,100)
 
         ];  
     }
